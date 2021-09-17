@@ -1,19 +1,18 @@
 #include <HashTable.h>
 #include <Math.h>
 #include <strings.h>
-#include <Search.h>
 /**************************************************************
  *
  *                  SPECIAL MEMBER FUNCTIONS
  *
  **************************************************************/
 template<typename HASH_KEY, typename HASH_VALUE>
-HashTable::HashTable()
+HashTable<HASH_KEY, HASH_VALUE>::HashTable()
 : table(nullptr),
   slots(0),
   collisions(0),
   set_of_primes_u32(nullptr),
-  number_of_primes_u32
+  number_of_primes_u32()
 {
     /* TODO: Initialize all of the above */
     // The seive of atkin
@@ -74,7 +73,7 @@ HashTable::HashTable()
         };
         // For each integer upto bound (starting at the first non-marked prime 7),
         // Perform atkins sieve
-        for (size_t n = 7; i <= bound; ++n)
+        for (size_t n = 7; n <= bound; ++n)
         {
             // Remainder of n with sixty 
             size_t r = n % SIXTY;
@@ -84,7 +83,7 @@ HashTable::HashTable()
             while ((i < sizeof(wheels)/sizeof(wheels[0])) && (-1 == search_ret))
             {
                 // Binary search for the element
-                search_ret = Search::binary_search(r, wheels[i], wheel_szs[i]);
+                //search_ret = Search::binary_search(r, wheels[i], wheel_szs[i]);
                 i++;
             }
             // Find the number of solutions
@@ -110,9 +109,6 @@ HashTable::HashTable()
                 set_of_primes[primes_sz++] = n;
             }
         }
-        // Free the local, atkin sieve 
-        free(atkin_sieve);
-        atkin_sieve = nullptr;
     };
     // Compute the set of primes using the above algorithm
     seive_of_atkin(set_of_primes_u32, UINT32_MAX);
@@ -135,30 +131,32 @@ HashTable::HashTable()
 
 // Division Hash
 template<typename HASH_KEY, typename HASH_VALUE>
-size_t HashTable::divisionHash(HASH_KEY k)
+size_t HashTable<HASH_KEY, HASH_VALUE>::divisionHash(HASH_KEY k)
 {
     // Choose a prime from the list 
     /*TODO: Choose a prime based on the number of slots and 
      *      the set of primes   
      */
-    auto choose_prime = [slots, set_of_primes]()
-    {
-    };
+    //auto choose_prime = [slots, set_of_primes]()
+    //{
+    //};
     // The chosen golden prime
-    static const size_t GOLDEN_PRIME = choose_prime();
+    //static const size_t GOLDEN_PRIME = choose_prime();
 
     // Now perform division hash 
-    return toUint(k) % GOLDEN_PRIME;
+    return 0; // toUint(k) % GOLDEN_PRIME;
 }
 
 // Multiplication Hash
 template<typename HASH_KEY, typename HASH_VALUE>
-size_t HashTable::multiplicationHash(HASH_KEY k)
+size_t HashTable<HASH_KEY, HASH_VALUE>::multiplicationHash(HASH_KEY k)
 {
+    return 0;
 }
 
 // Universal Hash
 template<typename HASH_KEY, typename HASH_VALUE>
-size_t HashTable::universalHash(HASH_KEY k)
+size_t HashTable<HASH_KEY, HASH_VALUE>::universalHash(HASH_KEY k)
 {
+    return 0;
 }

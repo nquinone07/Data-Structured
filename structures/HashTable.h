@@ -1,7 +1,9 @@
 #ifndef DATA_STRUCTURES_HASHTABLE_H
 #define DATA_STRUCTURES_HASHTABLE_H
 
-#include <stdint.h>
+#include <cstdint>
+#include <cstddef>
+#include <sys/types.h>
 /*****************************************************************************************/
 // DEFINITION  : Simple linked list
 //
@@ -58,7 +60,6 @@ public:
     HashTable();
     // Destructor - Free'ing any heap-allocated memory
     ~HashTable();
-    
 
 private:
     /// Private Functions ///
@@ -87,5 +88,4 @@ private:
     // The number of primes 
     ssize_t number_of_primes_u32;
 };
-
 #endif 

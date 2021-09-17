@@ -1,5 +1,6 @@
 #ifndef DATA_STRUCTURES_STACK_H
 #define DATA_STRUCTURES_STACK_H
+#include <cstddef>
 
 template<typename TYPE, size_t SIZE> 
 class Stack
@@ -22,7 +23,7 @@ public:
     // Peek the top of the stack, returning the element that was
     // most recently added. This operation is not destructive, 
     // the element peeked is NOT removed
-    TYPE& peek();
+    TYPE peek();
 
     // Destructive, return and remove the top of the stack
     TYPE pop();
@@ -31,10 +32,10 @@ public:
     bool push(TYPE);
 
     // Check if the stack is full
-    inline bool isFull();
+    inline bool full();
 
     // Check if the stack is empty
-    inline bool isEmpty();
+    inline bool empty();
 
 private:
 
@@ -45,13 +46,13 @@ private:
 };
    
 template<typename TYPE, size_t SIZE>
-inline bool Stack::isEmpty()
+inline bool Stack<TYPE, SIZE>::empty()
 {
     return 0 == length;
 }
 
 template<typename TYPE, size_t SIZE>
-inline bool Stack::isFULL()
+inline bool Stack<TYPE, SIZE>::full()
 {
     return SIZE == length;
 }

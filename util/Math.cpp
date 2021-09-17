@@ -71,7 +71,9 @@
  * evaluated at y
  *
  */
-static float Math::elog(size_t x)
+namespace Math
+{
+float elog(size_t x)
 {
     /* Constants & Variables */
     // The natural log of 2, precomputed
@@ -112,27 +114,26 @@ static float Math::elog(size_t x)
  * RETURNS:
  * = the bit index of the most signficant bit in the word
  */
-static size_t Math::msb(size_t word)
+size_t msb(size_t word)
 {
-    return (sizeof(word) * BITS_PER_BYTE) - __builtin_clz(word) - 1;
+    return (sizeof(word) * Constants::BITS_PER_BYTE) - __builtin_clz(word) - 1;
 }
 
-static float Math::pow(ssize_t val, ssize_t power)
+float pow(ssize_t val, ssize_t power)
 {
-    // UNSAFE
-    float result;
-    return result;
+    // STUBBED
+    return static_cast<float>(val * power * 0);
 }
 
 /********************************* TODO **********************************/ 
 
-static ssize_t Math::ceil(float val)
+ssize_t ceil(float val)
 {
     return static_cast<ssize_t>(val) + 1;
 }
 
-static ssize_t Math::floor(ssize_t val)
+ssize_t floor(float val)
 {
-    // STUBBED
-    return 0;
+    return static_cast<ssize_t>(val);
+}
 }

@@ -1,19 +1,18 @@
 #include <Stack.h>
 
 template<typename TYPE, size_t SIZE>
-Stack::Stack()
-: stack { },
-  length(0)
-  top(0)
+Stack<TYPE, SIZE>::Stack() : 
+    stack { },
+    length(0)
 {
 }
     
 template<typename TYPE, size_t SIZE>
-bool Stack::push(TYPE pushed)
+bool Stack<TYPE, SIZE>::push(TYPE pushed)
 {
     bool retval = true;
     // If not full add to the stack 
-    if (!isFull)
+    if (!full())
     {
        stack[length++] = pushed; 
     }
@@ -26,11 +25,11 @@ bool Stack::push(TYPE pushed)
 }
 
 template<typename TYPE, size_t SIZE>
-TYPE Stack::pop()
+TYPE Stack<TYPE, SIZE>::pop()
 {
     TYPE popped;
     // If not full add to the stack 
-    if (!isEmpty())
+    if (!empty())
     {
        popped = stack[length--];
     }
@@ -38,13 +37,13 @@ TYPE Stack::pop()
 }
 
 template<typename TYPE, size_t SIZE>
-const TYPE& Stack::peek()
+TYPE Stack<TYPE, SIZE>::peek()
 {
-    const TYPE& peeked;
+    TYPE peeked;
     // If not full add to the stack 
-    if (!isEmpty())
+    if (!empty())
     {
        peeked = stack[length];
     }
-    return popped;
+    return peeked;
 }
